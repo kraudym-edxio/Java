@@ -1,0 +1,314 @@
+Script started on Fri Oct  2 14:34:13 2020
+
+The default interactive shell is now zsh.
+To update your account to use zsh, please run `chsh -s /bin/zsh`.
+For more details, please visit https://support.apple.com/kb/HT208050.
+[?1034hbash-3.2$ cat StringTest.java 
+public class StringTest {
+
+    public static void main (String[] args) {
+
+        String str = "edxio kraudy";
+        System.out.println(str);
+        System.out.println(str.length());
+
+        //First and last name will always be split into two parts
+        String[] parts = str.split(" ", 2);
+
+        String firstName = parts[0];
+        String lastName = parts[1];
+
+        //Displaying str2 after an alteration
+        String str2 = lastName + ", " + firstName;
+        System.out.println(str2);
+
+        //The last letter of the lastName will always be char at index (length of the string minus one)
+        System.out.println(firstName.indexOf(lastName.charAt(lastName.length() - 1)));
+
+        //The first letter of the lastName will always be char at index (0)
+        System.out.println(firstName.lastIndexOf(lastName.charAt(0)));
+
+        /*
+          The first letter of the firstName and the first letter of the lastName, i.e. index 0,
+          will always be the characters to be capitalized. This is why we can do the following:
+         */
+        firstName = firstName.substring(0, 1).toUpperCase() + firstName.substring(1);
+        lastName = lastName.substring(0, 1).toUpperCase() + lastName.substring(1);
+
+        System.out.println(firstName + " " + lastName);
+
+    }
+
+}
+bash-3.2$ java [Kc StringTest.aj[K[Kjava 
+bash-3.2$ java StringTest.=[K[K
+edxio kraudy
+12
+kraudy, edxio
+-1
+-1
+Edxio Kraudy
+bash-3.2$ cat TestRandomClass.java 
+import java.util.Random;
+
+public class TestRandomClass {
+
+    public static void main (String[] args) {
+
+        Random rand = new Random(); //Instance of the Random class
+
+        System.out.println("Printing five random integers: ");
+        rand.ints(5).forEach(System.out::println);
+
+        System.out.println("\nPrinting five random floating point (double) numbers: ");
+        rand.doubles(5).forEach(System.out::println);
+
+        System.out.println("\nPrinting five random integers (10 <= rand <= 20): ");
+        rand.ints(5, 10, 21).forEach(System.out::println);
+
+        System.out.println("\nPrinting five random floating point (double) numbers (1 <= rand < 10): ");
+        rand.doubles(5, 1, 10).forEach(System.out::println);
+
+        System.out.println("\nPrinting five random even integers (10 <= rand <= 100): ");
+        int count = 0;
+        while (count < 5) {
+
+            int random = (rand.nextInt(91) + 10);
+
+            //Checking if integer is even
+            if (random % 2 == 0) {
+                System.out.println(random);
+                count++;
+            }
+
+        }
+
+        //Simulating a coin toss
+        System.out.println("\nCoin toss simulation: ");
+        for (int x = 0; x < 5; x++) {
+
+            int toss = rand.nextInt(2);
+
+            if (toss == 0) {
+                System.out.println("Head");
+            }
+
+            else {
+                System.out.println("Tail");
+            }
+
+        }
+
+    }
+
+}bash-3.2$ cat [K[K[K[Kjavac TestRandomClass.java 
+bash-3.2$ java TestRandomClass.[K
+Printing five random integers: 
+1016089974
+-820114558
+-472532819
+-1440154748
+-671560912
+
+Printing five random floating point (double) numbers: 
+0.5134411310325631
+0.16828356167392244
+0.4653986987450326
+0.11400727623651297
+0.03586082818935421
+
+Printing five random integers (10 <= rand <= 20): 
+18
+18
+18
+15
+12
+
+Printing five random floating point (double) numbers (1 <= rand < 10): 
+7.752512050743121
+3.779361914759188
+4.999149467952424
+9.056758973692583
+6.15715876041876
+
+Printing five random even integers (10 <= rand <= 100): 
+56
+12
+48
+84
+86
+
+Coin toss simulation: 
+Head
+Head
+Head
+Head
+Tail
+bash-3.2$ cat Book.java 
+/**
+ * This is a class which is used to create different classes for books
+ */
+
+public class Book {
+
+    //Private string variables
+    private String name;
+    private String author;
+
+    //Private integer variables
+    private int year;
+    private int pages;
+
+    /**
+     * This is the default constructor
+     */
+    public Book() {
+
+        name = " ";
+        author = " ";
+        year = 0;
+        pages = 0;
+
+    }
+
+    /**
+     * This is the second constructor. It will create an instance of
+     * Book given its name as a mandatory value.
+     * @param name The name of the book
+     */
+    public Book(String name) {
+
+        this.name = name;
+        author = " ";
+        pages = 0;
+        year = 0;
+
+    }
+
+    /**
+     * This is the third constructor. It will create an instane of
+     * Book given its name and author as mandatory values.
+     * @param name The name of the book
+     * @param author The author of the book
+     */
+    public Book(String name, String author) {
+
+        this.name = name;
+        this.author = author;
+        pages = 0;
+        year = 0;
+
+    }
+
+    /**
+     * Accessor for book name
+     * @return the name of the book
+     */
+    public String getName(){
+        return this.name;
+    }
+
+    /**
+     * Accessor for book's author
+     * @return the author of the book
+     */
+    public String getAuthor() {
+        return this.author;
+    }
+
+    /**
+     * Accessor for publication year
+     * @return the book's year
+     */
+    public int getYear() {
+        return this.year;
+    }
+
+    /**
+     * Accessor for number of pages
+     * @return the number of pages
+     */
+    public int getPages() {
+        return this.pages;
+    }
+
+    /**
+     * Sets the name of the book
+     * @param name The name of the book
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * Sets the author of the book
+     * @param author The author of the book
+     */
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    /**
+     * Sets the publication year
+     * @param year The year of the book
+     */
+    public void setYear(int year) {
+        this.year = year;
+    }
+
+    /**
+     * Sets the number of pages
+     * @param pages The number of pages
+     */
+    public void setPages(int pages) {
+        this.pages = pages;
+    }
+
+}bash-3.2$ javac Book.java 
+bash-3.2$ cat BookTester.java 
+public class BookTester {
+
+    public static void main (String[] args) {
+
+        Book book_default = new Book();
+        Book book1 = new Book("To Kill a Mockingbird");
+        Book book2 = new Book("Cracking the Coding Interview", "Gayle Laakmann McDowell");
+
+        System.out.printf("Actual name of book1: %s\n", book1.getName());
+        System.out.println("Expected name of book1: To Kill a Mockingbird\n");
+
+        book1.setAuthor("Edxio Kraudy Mora");
+        book1.setPages(432);
+
+        System.out.printf("Actual author of book1: %s\n", book1.getAuthor());
+        System.out.println("Expected author of book1: Edxio Kraudy Mora\n");
+
+        book2.setYear(1996);
+        book2.setName("Theoretical Foundations of Computer Science");
+
+        System.out.printf("Actual year of book2: %d\n", book2.getYear());
+        System.out.println("Expected year of book2: 1996\n");
+
+        System.out.printf("Actual name of book2: %s\n", book2.getName());
+        System.out.println("Expected name of book2: Theoretical Foundations of Computer Science\n");
+
+    }
+
+}bash-3.2$ java [K [Kc C[KBookTester.java 
+bash-3.2$ java BookTester.[K
+Actual name of book1: To Kill a Mockingbird
+Expected name of book1: To Kill a Mockingbird
+
+Actual author of book1: Edxio Kraudy Mora
+Expected author of book1: Edxio Kraudy Mora
+
+Actual year of book2: 1996
+Expected year of book2: 1996
+
+Actual name of book2: Theoretical Foundations of Computer Science
+Expected name of book2: Theoretical Foundations of Computer Science
+
+bash-3.2$ exit
+exit
+
+Script done on Fri Oct  2 14:35:58 2020

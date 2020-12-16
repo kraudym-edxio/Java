@@ -1,0 +1,75 @@
+Script started on Mon Sep 21 22:13:39 2020
+
+The default interactive shell is now zsh.
+To update your account to use zsh, please run `chsh -s /bin/zsh`.
+For more details, please visit https://support.apple.com/kb/HT208050.
+[?1034hbash-3.2$ cat DialogViewer.java 
+import javax.swing.JOptionPane;
+
+public class DialogViewer {
+
+        public static void main (String[] args) {
+
+            String name = JOptionPane.showInputDialog("What is your name?");
+
+            System.out.println("Hello " + name + "!");
+
+        }
+}bash-3.2$ javac DialogViewer.java 
+bash-3.2$ java DialogViewer.[K
+Hello Edxio Kraudy!
+bash-3.2$ cat Friends.java 
+import javax.swing.JOptionPane;
+
+public class Friends {
+
+    public static void main (String[] args) {
+
+        int line = 1;
+
+        String name1 = JOptionPane.showInputDialog("What is the name of friend one?");
+        System.out.println(line + "\t" + name1);
+
+        line++;
+
+        String name2 = JOptionPane.showInputDialog("What is the name of friend two?");
+        System.out.println(line + "\t" + name2);
+
+        line++;
+
+        String name3 = JOptionPane.showInputDialog("What is the name of friend three?");
+        System.out.println(line + "\t" + name3);
+
+    }
+
+}bash-3.2$ javac Friends.java 
+bash-3.2$ java Friends.[K
+1	Edxio
+2	Paulo
+3	Thomas
+bash-3.2$ cat RectangleTest.java 
+import java.awt.Rectangle;
+
+public class RectangleTest {
+
+    public static void main(String[] args) {
+
+        Rectangle rect1 = new Rectangle(10, 15, 20, 45);
+        System.out.println("X: " + rect1.getX());
+        System.out.println("Y: " + rect1.getY());
+
+        System.out.println("Width: " + rect1.getWidth());
+        System.out.println("Height: " + rect1.getHeight());
+
+    }
+
+}bash-3.2$ javac RectangleTest.java 
+bash-3.2$ java RectangleTest.=[K[K
+X: 10.0
+Y: 15.0
+Width: 20.0
+Height: 45.0
+bash-3.2$ exit
+exit
+
+Script done on Mon Sep 21 22:15:21 2020
