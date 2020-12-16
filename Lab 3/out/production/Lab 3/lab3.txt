@@ -1,0 +1,374 @@
+Script started on Mon Oct  5 13:41:04 2020
+
+The default interactive shell is now zsh.
+To update your account to use zsh, please run `chsh -s /bin/zsh`.
+For more details, please visit https://support.apple.com/kb/HT208050.
+[?1034hbash-3.2$ cat CAr[K[KCar[K[K[Kar.a[Kjava
+/**
+ * This is a class which is used to create different classes for cars
+ */
+
+public class Car {
+
+    //Private string variables
+    private String make;
+    private String model;
+
+    //Private integer variables
+    private int year;
+    private int speed;
+    private int maxSpeed;
+
+    //Private double variables
+    private double price;
+    private double fuel;
+    private double efficiency;
+
+    //Private boolean variables
+    private boolean isOn;
+    private boolean isMoving;
+
+    //Private TransmissionType variable (from enum)
+    private TransmissionType transmission;
+
+    /**
+     * This is the default constructor
+     */
+    public Car() {
+
+        speed = 0;
+        transmission = TransmissionType.Automatic;
+        maxSpeed = 150;
+
+    }
+
+    /**
+     * This is the second constructor
+     * @param make Make of the car
+     * @param model Model of the car
+     */
+    public Car (String make, String model) {
+
+        this();
+        this.make = make;
+        this.model = model;
+
+    }
+
+    /**
+     * This is the third constructor
+     * @param make Make of the car
+     * @param model Model of the car
+     * @param year Year of the car
+     * @param price Price of the car
+     */
+    public Car (String make, String model, int year, double price) {
+
+        this(make, model);
+        this.year = year;
+        this.price = price;
+
+    }
+
+    /**
+     * This is the fourth constructor
+     * @param efficiency Fuel efficiency in litres/km
+     */
+    public Car (double efficiency) {
+
+        fuel = 0.0;
+        this.efficiency = efficiency;
+
+    }
+
+    /**
+     * Accessor for determining fuel in the tank
+     * @return the fuel left in the tank
+     */
+    public double getGasInTank() {
+        return this.fuel;
+    }
+
+    /**
+     * Increments the amount of fuel in the gas tank
+     * @param litres amount of fuel added, in litres
+     */
+    public void addGas(double litres) {
+        this.fuel += litres;
+    }
+
+    /**
+     * Simulates driving the car over a certain distance
+     * @param distance the distance to travel, in km
+     */
+    public void drive(double distance) {
+
+        if (distance > 0 && distance <= 100.0) {
+            this.fuel -= 15;
+        }
+
+        else {
+            this.fuel -= 25;
+        }
+
+    }
+
+    /**
+     Accessor for the max speed of the car
+     * @return the max speed of the car
+     */
+    public int getMaxSpeed() {
+        return maxSpeed;
+    }
+
+    /**
+     * Accessor for the transmission type of the car
+     * @return the transmission type
+     */
+    public TransmissionType getTransmission() {
+        return this.transmission;
+    }
+
+    /**
+     * Sets the transmission type of the car
+     * @param transmission the transmission type of the car
+     */
+    public void setTransmission(TransmissionType transmission) {
+        this.transmission = transmission;
+    }
+
+    /**
+     * Accessor for the price of the car
+     * @return the price of the car
+     */
+    public double getPrice() {
+        return this.price;
+    }
+
+    /**
+     * Sets the price of the car
+     * @param price the price of the car
+     */
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    /**
+     * Accessor for the make of the car
+     * @return the make of the car
+     */
+    public String getMake() {
+        return this.make;
+    }
+
+    /**
+     * Sets the make of the car
+     * @param make the of the car
+     */
+    public void setMake(String make) {
+        this.make = make;
+    }
+
+    /**
+     * Accessor for the model of the car
+     * @return the model of the car
+     */
+    public String getModel() {
+        return model;
+    }
+
+    /**
+     * Sets the model of the car
+     * @param model the model of the car
+     */
+    public void setModel(String model) {
+        this.model = model;
+    }
+
+    /**
+     * Accessor for the year of the car
+     * @return the year of the car
+     */
+    public int getYear() {
+        return year;
+    }
+
+    /**
+     * Sets the year of the car
+     * @param year the year of the car
+     */
+    public void setYear(int year) {
+        this.year = year;
+    }
+
+    /**
+     * Accessor for the speed of the car
+     * @return the speed of the car
+     */
+    public int getSpeed() {
+        return speed;
+    }
+
+    /**
+     * Sets the speed of the car
+     * @param speed the speed of the car
+     */
+    public void setSpeed(int speed) {
+
+        if (speed <= maxSpeed) {
+            this.speed = speed;
+        }
+
+    }
+
+    /**
+     * Accessor for determining if the car is moving
+     * @return True or false based on whether the car is moving
+     */
+    public boolean isMoving() {
+        return this.isMoving;
+    }
+
+    /**
+     * Sets the movement of the car to either true or false
+     * @param moving the movement of the car (True or False)
+     */
+    public void setMoving(boolean moving) {
+        this.isMoving = moving;
+    }
+
+    /**
+     * Accessor for determining if the cat is on
+     * @return True or false based on whether the car is on
+     */
+    public boolean isOn() {
+        return this.isOn;
+    }
+
+    /**
+     * Sets the boolean value for isOn
+     * @param isOn whether the car is on (True or False)
+     */
+    public void setOn(boolean isOn) {
+        this.isOn = isOn;
+    }
+
+    /**
+     * Sets the increase of speed due to acceleration
+     * @param inc the increase of speed due to acceleration
+     */
+    public void accelerate(int inc) {
+        if (inc + speed <= maxSpeed) {
+            this.speed += inc;
+        }
+    }
+
+    /**
+     * Sets the decrease of speed due to deceleration
+     * @param dec the decrease of speed due to deceleration
+     */
+    public void decelerate(int dec) {
+        this.speed -= dec;
+    }
+
+    //Enum of transmission types
+    enum TransmissionType {
+        Manual, Automatic
+    }
+
+}bash-3.2$ java [Kc Car.a[Kjava 
+bash-3.2$ cat CarTester.java 
+public class CarTester {
+
+    public static void main (String[] args) {
+
+        Car car1 = new Car();
+        Car car2 = new Car("Ford", "EcoSport", 2019, 34756.98);
+
+        System.out.printf("Actual model of car2 is: %s\n", car2.getModel());
+        System.out.print("Expected model of car2 is: EcoSport\n");
+
+        car1.setSpeed(30);
+        System.out.printf("\nActual speed of car1 is: %d\n", car1.getSpeed());
+        System.out.print("Expected speed of car1 is: 30\n");
+
+        car1.accelerate(90);
+        System.out.printf("\nActual speed of car1 is: %d\n", car1.getSpeed());
+        System.out.print("Expected speed of car1 is: 120\n");
+
+        car2.setOn(true);
+        System.out.printf("\nActual value of isOn for car2: %b\n", car2.isOn());
+        System.out.print("Expected value of isOn for car2: true\n");
+
+        car1.setTransmission(Car.TransmissionType.Manual);
+        System.out.printf("\nActual transmission type of car1: %s\n", car1.getTransmission());
+        System.out.print("Expected transmission type of car1: Manual\n");
+
+        Car car3 = new Car(0.65);
+        car3.addGas(52.68);
+
+        System.out.printf("\nActual gas in the tank: %.2f\n", car3.getGasInTank());
+        System.out.print("Expected gas in the tank: 52.68\n");
+
+        car3.drive(77.5);
+
+        System.out.printf("\nActual gas in the tank: %.2f\n", car3.getGasInTank());
+        System.out.print("Expected gas in the tank: 37.68\n");
+
+    }
+
+}bash-3.2$ javac CarTester.java
+bash-3.2$ java CarTester.[K
+Actual model of car2 is: EcoSport
+Expected model of car2 is: EcoSport
+
+Actual speed of car1 is: 30
+Expected speed of car1 is: 30
+
+Actual speed of car1 is: 120
+Expected speed of car1 is: 120
+
+Actual value of isOn for car2: true
+Expected value of isOn for car2: true
+
+Actual transmission type of car1: Manual
+Expected transmission type of car1: Manual
+
+Actual gas in the tank: 52.68
+Expected gas in the tank: 52.68
+
+Actual gas in the tank: 37.68
+Expected gas in the tank: 37.68
+bash-3.2$ cat StringTest.java
+public class StringTest {
+
+    public static void main (String[] args) {
+
+        String s = "Hello";
+        System.out.println(s.toUpperCase());
+        String t = s;
+        System.out.println(t);
+
+        /* The output of this program will be:
+
+        HELLO
+        Hello
+
+        The output is as such because the method toUpperCase
+        was utilized within the print statement on line six.
+        If String t was declared like: String t = s.toUpperCase();
+        then both print statements would print HELLO. The methods that
+        belong to the string class are accessors when used within print
+        statements.
+         */
+
+    }
+
+}bash-3.2$ javac StringTest.java 
+bash-3.2$ java StringTest.[K
+HELLO
+Hello
+bash-3.2$ exit
+exit
+
+Script done on Mon Oct  5 13:42:04 2020
