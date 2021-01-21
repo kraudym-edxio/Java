@@ -1,0 +1,116 @@
+Script started on Mon Nov 16 20:38:54 2020
+
+The default interactive shell is now zsh.
+To update your account to use zsh, please run `chsh -s /bin/zsh`.
+For more details, please visit https://support.apple.com/kb/HT208050.
+[?1034hbash-3.2$ cat Activity1.java 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.util.Scanner;
+
+public class Activity1 {
+
+    public static void main (String[] args) throws FileNotFoundException {
+
+        File inputFile = new File("hello.txt");
+
+        PrintWriter out = new PrintWriter(inputFile);
+
+        out.print("Hello, World!");
+        out.close();
+
+        Scanner in = new Scanner(inputFile);
+
+        String line = in.nextLine();
+        System.out.println(line);
+
+        in.close();
+
+    }
+
+}bash-3.2$ javac Activity1.java 
+bash-3.2$ java Activity1
+Hello, World!
+bash-3.2$ helo[K[K[K[Kcva[K[Kat hello.txt 
+Hello, World!bash-3.2$ cat input.txt 
+Double
+2.9
+3
+The
+92.45
+-12.4
+-94
+Test
+22bash-3.2$ cat Activity2.tx[K[Kjava 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+public class Activity2 {
+
+    public static void main (String[] args) throws FileNotFoundException {
+
+        ArrayList<Double> list = new ArrayList<Double>();
+
+        try {
+
+            File inputFile = new File(args[0]);
+            Scanner in = new Scanner(inputFile);
+
+            File otherFile = new File(args[1]);
+
+            if (in.next().equals("Double")) { //Checks the data type of the file information
+
+                while (in.hasNextLine()) {
+
+                    //Reading the double values from file and storing them in the list
+                    if (in.hasNextDouble()) {
+                        double value = in.nextDouble();
+                        list.add(value);
+                    }
+
+                    else if (in.hasNext()) {
+                        in.next();
+                    }
+
+                }
+
+            }
+
+            if (args[2].equals("ascending")) {
+                Collections.sort(list);
+            }
+
+            else {
+                list.sort(Collections.reverseOrder());
+            }
+
+            PrintWriter out = new PrintWriter(otherFile);
+            out.println("Double, " + list.size() + "\n" + list);
+
+            in.close();
+            out.close();
+
+        }
+
+        catch (IOException | InputMismatchException exception) {
+            System.out.println(exception.getMessage());
+        }
+
+    }
+
+}bash-3.2$ javac Activity.java[K[K[K[K[K2`[K.java 
+bash-3.2$ ja[Kava Activity2 IN[K[Kinput.txt outputSorted.txt desec[K[K[Kscending
+bash-3.2$ cat outputSorted.txt 
+Double, 6
+[92.45, 22.0, 3.0, 2.9, -12.4, -94.0]
+bash-3.2$ exit
+exit
+
+Script done on Mon Nov 16 20:40:57 2020

@@ -1,0 +1,477 @@
+Script started on Mon Nov 23 20:03:54 2020
+
+The default interactive shell is now zsh.
+To update your account to use zsh, please run `chsh -s /bin/zsh`.
+For more details, please visit https://support.apple.com/kb/HT208050.
+[?1034hbash-3.2$ cat Address.java 
+/**
+ * This class is used to create addresses
+ */
+public class Address {
+
+    private int address;
+
+    /**
+     * This is the default constructor
+     */
+    public Address() {
+        this.address = 0;
+    }
+
+    /**
+     * This is the second constructor
+     * @param address the address
+     */
+    public Address(int address) {
+        this.address = address;
+    }
+
+    /**
+     * Accessor for the address
+     * @return the address
+     */
+    public int getAddress() {
+        return address;
+    }
+
+    /**
+     * Sets the address
+     * @param address the address
+     */
+    public void setAddress(int address) {
+        this.address = address;
+    }
+
+    /**
+     * Overriding the toString method
+     * @return string representation of Address
+     */
+    @Override
+    public String toString() {
+        return "Address{" + "address = " + address + '}';
+    }
+}bash-3.2$ cat Product.java 
+/**
+ * This class is used to create products with basic values and properties
+ */
+public class Product {
+
+    private double price;
+    private int quantity;
+    private Address address;
+    private boolean outOfStock;
+
+    /**
+     * This is the default constructor
+     */
+    public Product() {
+        this.quantity = 0;
+        this.price = 0;
+    }
+
+    /**
+     * This is the second constructor
+     * @param address address of product
+     * @param quantity quantity of product
+     * @param price price of product
+     */
+    public Product(Address address, int quantity, double price) {
+        this.address = new Address();
+        this.quantity = quantity;
+        this.price = price;
+
+        this.outOfStock = this.quantity <= 0;
+
+    }
+
+    /**
+     * Accessor for the price of a product
+     * @return the price
+     */
+    public double getPrice() {
+        return price;
+    }
+
+    /**
+     * Accessor for the quantity of a product
+     * @return the quantity
+     */
+    public int getQuantity() {
+        return quantity;
+    }
+
+    /**
+     * Accessor for outOfStock value
+     * @return true or false
+     */
+    public boolean isOutOfStock() {
+        return outOfStock;
+    }
+
+    /**
+     * Accessor for the product's address
+     * @return the address
+     */
+    public Address getAddress() {
+        return address;
+    }
+
+    /**
+     * Sets the price of a product
+     * @param price of product
+     */
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    /**
+     * Sets the quantity of a product
+     * @param quantity of product
+     */
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    /**
+     * Sets the true or false value of outOfStock
+     * @param outOfStock true or false value
+     */
+    public void setOutOfStock(boolean outOfStock) {
+        this.outOfStock = outOfStock;
+    }
+
+    /**
+     * Sets the address of a product
+     * @param address the address of the product
+     */
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    /**
+     * Overriding the toString method
+     * @return string representation of a Product
+     */
+    @Override
+    public String toString() {
+        return "Product{" + "price = " + price + ", quantity = " + quantity + ", address = " + address + ", outOfStock = " + outOfStock + '}';
+    }
+
+}bash-3.2$ cat LIn[K[KineItem.java 
+/**
+ * This class is used to create LineItems using products and their quantities
+ */
+public class LineItem {
+
+    private Product product;
+    private int quantity;
+    private double total;
+
+    /**
+     * This is the default constructor
+     */
+    public LineItem() {
+        this.product = null;
+        this.quantity = 0;
+        this.total = 0.0;
+    }
+
+    /**
+     * This is the second constructor
+     * @param product the product
+     * @param quantity the quantity of said product
+     */
+    public LineItem(Product product, int quantity) {
+        this.product = product;
+        this.quantity = quantity;
+        this.total = product.getPrice() * quantity;
+    }
+
+    /**
+     * Accessor for the product
+     * @return the product
+     */
+    public Product getProduct() {
+        return product;
+    }
+
+    /**
+     * Accessor for the quantity of product
+     * @return the quantity
+     */
+    public int getQuantity() {
+        return quantity;
+    }
+
+    /**
+     * Accessor for the amount due
+     * @return total to be paid
+     */
+    public double getTotal() {
+        return total;
+    }
+
+    /**
+     * Sets the product
+     * @param product the product to be set
+     */
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    /**
+     * Sets the quantity of product
+     * @param quantity product's quantity
+     */
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    /**
+     * Overriding the toString method
+     * @return string representation of a LineItem
+     */
+    @Override
+    public String toString() {
+        return "LineItem{" + "product = " + product + ", quantity = " + quantity + ", total = " + total + '}';
+    }
+
+}bash-3.2$ cat Invoice.java 
+import java.util.ArrayList;
+
+/**
+ * Class is used to create an invoice and add items to each invoice object
+ */
+public class Invoice {
+
+    private ArrayList<LineItem> itemsList;
+
+    /**
+     * This is the default constructor
+     */
+    public Invoice() {
+        this.itemsList = new ArrayList<>();
+    }
+
+    /**
+     * Adds an item to the list of type LineItem if in stock
+     * @param product product to be added
+     * @param quantity quantity of the product
+     */
+    public void addItem(Product product, int quantity) {
+
+        if (product.isOutOfStock() || product.getQuantity() < quantity) {
+            product.setOutOfStock(true);
+        }
+
+        else {
+            this.itemsList.add(new LineItem(product, quantity));
+        }
+
+    }
+
+    /**
+     * Accessor for the list of items
+     * @return the list of items
+     */
+    public ArrayList<LineItem> getItemsList() {
+        return itemsList;
+    }
+
+    /**
+     * Sets the list of items
+     * @param itemsList list of items
+     */
+    public void setItemsList(ArrayList<LineItem> itemsList) {
+        this.itemsList = itemsList;
+    }
+
+    /**
+     * Overriding the toString method for Invoice class
+     * @return new string representation
+     */
+    @Override
+    public String toString() {
+        return "Invoice{" + "itemsList = " + itemsList + '}';
+    }
+
+}bash-3.2$ cat InvoiceTester.java 
+/*
+
+    Invoice <>----- LineItem <>----- Product <>----- Address
+
+    Invoice class aggregates LineItem class
+    LineItem class aggregates Product class
+    Product class aggregates Address class
+
+ */
+public class InvoiceTester {
+
+    public static void main (String[] args) {
+
+        Address a1 = new Address(1001);
+        Product p1 = new Product();
+
+        p1.setAddress(a1);
+        p1.setPrice(12.45);
+        p1.setQuantity(16);
+
+        System.out.println(p1);
+
+        LineItem l1 = new LineItem(p1, 12);
+
+        Invoice i1 = new Invoice();
+        i1.addItem(p1, 4);
+
+        System.out.println(i1);
+
+    }
+
+}bash-3.2$ javac InvoiceTester.java 
+bash-3.2$ java InvoiceTester.[K
+Product{price = 12.45, quantity = 16, address = Address{address = 1001}, outOfStock = false}
+Invoice{itemsList = [LineItem{product = Product{price = 12.45, quantity = 16, address = Address{address = 1001}, outOfStock = false}, quantity = 4, total = 49.8}]}
+bash-3.2$ cat Pair
+cat: Pair: No such file or directory
+bash-3.2$ cat Pait.[K[Kr.java
+/**
+ * This is a generic class used to create Pairs
+ * @param <T> first
+ * @param <S> second
+ */
+
+public class Pair<T, S> {
+
+    private T first;
+    private S second;
+
+    /**
+     * This is the default constructor
+     */
+    public Pair() {
+
+    }
+
+    /**
+     * This is the second constructor
+     * @param first first parameter of type T
+     * @param second second parameter of type S
+     */
+    public Pair(T first, S second) {
+        this.first = first;
+        this.second = second;
+    }
+
+    /**
+     * Accessor for the first type
+     * @return the first type
+     */
+    public T getFirst() {
+        return first;
+    }
+
+    /**
+     * Accessor for the second type
+     * @return the second type
+     */
+    public S getSecond() {
+        return second;
+    }
+
+    /**
+     * Sets the first
+     * @param first first
+     */
+    public void setFirst(T first) {
+        this.first = first;
+    }
+
+    /**
+     * Sets the second
+     * @param second second
+     */
+    public void setSecond(S second) {
+        this.second = second;
+    }
+
+    /**
+     * Overriding the toString method
+     * @return string representation of a Pair
+     */
+    @Override
+    public String toString() {
+        return "Pair {" + "First = " + first + ", Second = " + second + '}';
+    }
+
+    /**
+     * Overriding the equals method
+     * @param o variable of type Object
+     * @return boolean value based on equality
+     */
+    @Override
+    public boolean equals(Object o) {
+
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Pair<?, ?> pair = (Pair<?, ?>) o;
+        return first.equals(pair.first) && second.equals(pair.second);
+
+    }
+
+}bash-3.2$ cat PairTester.java
+import java.util.ArrayList;
+import java.util.Collections;
+
+public class PairTester {
+
+    public static void main (String[] args) {
+
+        ArrayList< Pair<String, ArrayList<String>> > list = new ArrayList<>();
+        ArrayList< Pair<String, ArrayList<String>> > list2 = new ArrayList<>();
+
+        Pair<String, ArrayList<String>> pair1 = new Pair<String, ArrayList<String>>();
+
+        pair1.setFirst("Smart");
+
+        ArrayList<String> synonyms = new ArrayList<>();
+        synonyms.add("Intelligent");
+        synonyms.add("Clever");
+        synonyms.add("Bright");
+
+        Collections.sort(synonyms);
+        pair1.setSecond(synonyms);
+
+        list.add(pair1);
+        list2.add(pair1);
+
+        System.out.println("Actual pair1 first value: " + pair1.getFirst());
+        System.out.println("Expected pair1 first value: Smart");
+
+        System.out.println("\nActual pair1 second value: " + pair1.getSecond());
+        System.out.println("Expected pair1 second value: [Bright, Clever, Intelligent]");
+
+        System.out.println("\nActual list: " + list);
+        System.out.println("Expected list: [Pair {First = Smart, Second = [Bright, Clever, Intelligent]}]");
+
+        System.out.println("\nActual value for equality of list and list2: " + list.equals(list2));
+        System.out.println("Expected value for equality of list and list2: true");
+
+    }
+
+}bash-3.2$ javac PA[KairTester.java 
+bash-3.2$ java T[KPairTester.[K
+Actual pair1 first value: Smart
+Expected pair1 first value: Smart
+
+Actual pair1 second value: [Bright, Clever, Intelligent]
+Expected pair1 second value: [Bright, Clever, Intelligent]
+
+Actual list: [Pair {First = Smart, Second = [Bright, Clever, Intelligent]}]
+Expected list: [Pair {First = Smart, Second = [Bright, Clever, Intelligent]}]
+
+Actual value for equality of list and list2: true
+Expected value for equality of list and list2: true
+bash-3.2$ exit
+exit
+
+Script done on Mon Nov 23 20:05:12 2020

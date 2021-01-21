@@ -1,0 +1,345 @@
+Script started on Mon Nov  9 15:55:54 2020
+
+The default interactive shell is now zsh.
+To update your account to use zsh, please run `chsh -s /bin/zsh`.
+For more details, please visit https://support.apple.com/kb/HT208050.
+[?1034hbash-3.2$ cat Employee.java 
+public class Employee implements Payable {
+
+    private String name;
+    private int age;
+    private double hourlyRate;
+    private int workingHours;
+
+    public Employee() {
+        this.name = "";
+        this.age = 0;
+        this.hourlyRate = 0;
+        this.workingHours = 0;
+    }
+
+    public Employee(String name, int age, double hourlyRate, int workingHours) {
+        this.name = name;
+        this.age = age;
+        this.hourlyRate = hourlyRate;
+        this.workingHours = workingHours;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public double getHourlyRate() {
+        return hourlyRate;
+    }
+
+    public int getWorkingHours() {
+        return workingHours;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public void setHourlyRate(double hourlyRate) {
+        this.hourlyRate = hourlyRate;
+    }
+
+    public void setWorkingHours(int workingHours) {
+        this.workingHours = workingHours;
+    }
+
+    public double getPaymentAmount() {
+        return workingHours * hourlyRate;
+    }
+
+}bash-3.2$ cat Invoice.java 
+public class Invoice implements Payable {
+
+    private int numberOfProduct;
+    private double unitPrice;
+
+    public Invoice() {
+        this.numberOfProduct = 0;
+        this.unitPrice = 0;
+    }
+
+    public Invoice(int numberOfProduct, double unitPrice) {
+        this.numberOfProduct = numberOfProduct;
+        this.unitPrice = unitPrice;
+    }
+
+    public int getNumberOfProduct() {
+        return numberOfProduct;
+    }
+
+    public void setNumberOfProduct(int numberOfProduct) {
+        this.numberOfProduct = numberOfProduct;
+    }
+
+    public double getUnitPrice() {
+        return unitPrice;
+    }
+
+    public void setUnitPrice(double unitPrice) {
+        this.unitPrice = unitPrice;
+    }
+
+    @Override
+    public double getPaymentAmount() {
+        return numberOfProduct * unitPrice * 1.13;
+    }
+
+}bash-3.2$ cat a[KAC[KCTI[K[K[Kctivity1.java
+public class Activity1 {
+
+    public static void main(String[] args) {
+
+        Employee e1 = new Employee("Edxio", 19, 16.00, 40);
+        Invoice i1 = new Invoice(132, 0.84);
+
+        System.out.printf("Amount to be paid by e1: %.2f\n", e1.getPaymentAmount());
+        System.out.printf("Amount to be paid by i1: %.2f\n", i1.getPaymentAmount());
+
+    }
+
+}bash-3.2$ java [Kc Activity1.c[K[K.java
+bash-3.2$ java Activity1
+Amount to be paid by e1: 640.00
+Amount to be paid by i1: 125.29
+bash-3.2$ cat Shape.java 
+public abstract class Shape implements Comparable<Shape> {
+
+    private String name;
+
+    public Shape() {
+        this.name = "General Shape";
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public abstract double area();
+
+    @Override
+    public int compareTo(Shape o) {
+
+        if (this.area() < o.area())
+            return -1;
+
+        if (this.area() > o.area())
+            return 1;
+
+        return 0;
+
+    }
+
+}bash-3.2$ cat ShapeTester.java 
+import java.util.ArrayList;
+import java.util.Random;
+import java.util.Scanner;
+
+public class ShapeTester {
+
+    public static void main (String[] args) {
+
+        ArrayList<Shape> shapes = new ArrayList<Shape>();
+
+        Scanner in = new Scanner(System.in);
+        Random rand = new Random();
+
+        while (true) {
+
+            System.out.print("Enter one character (T, C, Q, O, or E): ");
+            char option = in.next().charAt(0);
+
+            switch (option) {
+
+                case 'T': { //Triangle
+                    double base = rand.nextInt(20) + 1;
+                    double height = rand.nextInt(20) + 1;
+
+                    Triangle triangle = new Triangle(base, height);
+                    shapes.add(triangle);
+
+                    continue;
+                }
+
+                case 'C': { //Circle
+                    double radius = rand.nextInt(20) + 1;
+
+                    Circle circle = new Circle(radius);
+                    shapes.add(circle);
+
+                    continue;
+                }
+
+                case 'Q': { //Square
+                    double side = rand.nextInt(20) + 1;
+
+                    Square square = new Square(side);
+                    shapes.add(square);
+
+                    continue;
+                }
+
+                case 'O': {
+                    double horRadius = rand.nextInt(20) + 1;
+                    double verRadius = rand.nextInt(20) + 1;
+
+                    Oval oval = new Oval(horRadius, verRadius);
+                    shapes.add(oval);
+
+                    continue;
+                }
+
+                case 'E': { //Exit loop
+                    break;
+                }
+
+            }
+
+            break;
+
+        }
+
+        for (Shape shape : shapes) {
+            System.out.printf("Shape: %s\t Area: %.2f\n", shape.getName(), shape.area());
+        }
+
+    }
+
+}bash-3.2$ ca[K[Kjavac ShapeTester.java 
+bash-3.2$ java ShapeTester.[K
+Enter one character (T, C, Q, O, or E): T
+Enter one character (T, C, Q, O, or E): C
+Enter one character (T, C, Q, O, or E): Q
+Enter one character (T, C, Q, O, or E): O
+Enter one character (T, C, Q, O, or E): E
+Shape: Triangle	 Area: 78.00
+Shape: Circle	 Area: 706.86
+Shape: Square	 Area: 289.00
+Shape: Oval	 Area: 56.55
+bash-3.2$ cat Animal.java 
+public abstract class Animal implements Edible {
+
+}bash-3.2$ cat Chicken.java 
+public class Chicken extends Animal implements Edible {
+
+    public Chicken() {
+
+    }
+
+    public String howtoEat() {
+        return "Chicken: Fry it and enjoy eating with ketchup, fries and coke...!";
+    }
+
+}bash-3.2$ cat Fish.java 
+public class Fish extends Animal implements Edible {
+
+    public Fish() {
+
+    }
+
+    @Override
+    public String howtoEat() {
+        return "Fish: Cook it and enjoy eating with white wine, salad and bread...!";
+    }
+
+}bash-3.2$ cat Fish.java [K[K[K[K[K[K[K[K[K[KMeat.java 
+public class Meat extends Animal implements Edible {
+
+    public Meat() {
+
+    }
+
+    @Override
+    public String howtoEat() {
+        return "Meat: Barbeque and ensure a proper cook time. Pair with vegetables...!";
+    }
+
+}bash-3.2$ cat Fruit.java 
+public abstract class Fruit implements Edible {
+
+}bash-3.2$ cat Orange.java 
+public class Orange extends Fruit implements Edible {
+
+    public Orange() {
+
+    }
+
+    public String howtoEat() {
+        return "Orange: Freshly squeeze into orange juice...!";
+    }
+
+}bash-3.2$ cat Banana.java 
+public class Banana extends Fruit implements Edible {
+
+    public Banana() {
+
+    }
+
+    public String howtoEat() {
+        return "Banana: Peel it and enjoy on the go...!";
+    }
+
+}bash-3.2$ cat Apple.java 
+public class Apple extends Fruit implements Edible {
+
+    public Apple() {
+
+    }
+
+    public String howtoEat() {
+        return "Apple: Cut into wedges and add salt...!";
+    }
+
+}bash-3.2$ cat AC[Kctivity3.a[Kjava 
+public class Activity3 {
+
+    public static void main (String[] args) {
+
+        Chicken chicken = new Chicken();
+        Fish fish = new Fish();
+        Meat meat = new Meat();
+
+        System.out.println("How to eat " + chicken.howtoEat());
+        System.out.println("How to eat " + fish.howtoEat());
+        System.out.println("How to eat " + meat.howtoEat());
+
+        Orange orange = new Orange();
+        Apple apple = new Apple();
+        Banana banana = new Banana();
+
+        System.out.println("\nHow to eat " + orange.howtoEat());
+        System.out.println("How to eat " + apple.howtoEat());
+        System.out.println("How to eat " + banana.howtoEat());
+
+    }
+
+}bash-3.2$ java [Kc JA[K[KActivity3.java 
+bash-3.2$ java Activity3
+How to eat Chicken: Fry it and enjoy eating with ketchup, fries and coke...!
+How to eat Fish: Cook it and enjoy eating with white wine, salad and bread...!
+How to eat Meat: Barbeque and ensure a proper cook time. Pair with vegetables...!
+
+How to eat Orange: Freshly squeeze into orange juice...!
+How to eat Apple: Cut into wedges and add salt...!
+How to eat Banana: Peel it and enjoy on the go...!
+bash-3.2$ exit
+exit
+
+Script done on Mon Nov  9 15:57:56 2020
