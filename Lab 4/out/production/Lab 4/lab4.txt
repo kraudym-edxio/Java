@@ -1,0 +1,599 @@
+Script started on Tue Oct 13 19:06:30 2020
+
+The default interactive shell is now zsh.
+To update your account to use zsh, please run `chsh -s /bin/zsh`.
+For more details, please visit https://support.apple.com/kb/HT208050.
+[?1034hbash-3.2$ cat Robot.java 
+import java.awt.Point;
+
+public class Robot {
+
+    private Point location;
+    private int direction;
+
+    /**
+     * This is the default constructor
+     * @param location where the robot is initially located (x, y)
+     * @param direction 0 for North, 1 for East, 2 for South, and 3 for West
+     */
+    public Robot (Point location, int direction) {
+        this.location = location;
+        this.direction = direction;
+    }
+
+    public void turnLeft() {
+
+        if (direction == 0) {
+            this.direction = 3;
+        }
+
+        else {
+            this.direction -= 1;
+        }
+
+    }
+
+    public void turnRight() {
+
+        if (direction == 3) {
+            this.direction = 0;
+        }
+
+        else {
+            this.direction += 1;
+        }
+
+    }
+
+    public void move() {
+
+        switch (direction) {
+
+            case 0 -> location.translate(0, -1);
+            case 1 -> location.translate(1, 0);
+            case 2 -> location.translate(0, 1);
+            case 3 -> location.translate(-1, 0);
+
+        }
+
+    }
+
+    public Point getLocation() {
+        return this.location;
+    }
+
+    public String getDirection() {
+
+        String c = "N";
+
+        switch (direction) {
+
+            case 0:
+                break;
+
+            case 1:
+                c = "E";
+                break;
+
+            case 2:
+                c = "S";
+                break;
+
+            case 3:
+                c = "W";
+                break;
+
+        }
+
+        return c;
+
+    }
+
+}bash-3.2$ cat RobotTw[Kester.java 
+import java.awt.Point;
+
+/**
+ A class to test the Robot class.
+ */
+public class RobotTester {
+
+    /**
+     Tests the methods of the Robot class. @param args not used
+     */
+    public static void main (String[] args) {
+
+        // Create a new Robot object with the initial position of (5,5) and initial direction to the East (1).
+        Robot robot = new Robot(new Point(5, 5), 1);
+
+        robot.move(); // 6, 5, 1
+        robot.turnRight(); // 6, 5, 2
+        robot.move(); // 6, 6, 2
+        robot.move(); // 6, 7, 2
+        robot.turnRight(); // 6, 7, 3
+        robot.move(); // 5, 7, 3
+        robot.move(); // 4, 7, 3
+        robot.turnLeft(); // 4, 7, 2
+        robot.move(); // 4, 8, 2
+
+        Point location = robot.getLocation();
+
+        System.out.println("Location: " + location.x + ", " + location.y);
+        System.out.println("Expected: 4, 8");
+        System.out.println("Direction: " + robot.getDirection());
+        System.out.println("Expected: S");
+
+    }
+
+}bash-3.2$ java [Kc RobotTester.java 
+bash-3.2$ java RobotTester.[K
+Location: 4, 8
+Expected: 4, 8
+Direction: S
+Expected: S
+bash-3.2$ ca[Kt[Kat Car.java 
+/**
+ * This is a class which is used to create different classes for cars
+ */
+
+public class Car {
+
+    //Private string variables
+    private String make;
+    private String model;
+
+    //Private integer variables
+    private int year;
+    private int speed;
+    private int maxSpeed;
+
+    //Private double variables
+    private double price;
+
+    //Private boolean variables
+    private boolean isOn;
+    private boolean isMoving;
+
+    //Private TransmissionType variable (from enum)
+    private TransmissionType transmission;
+
+    /**
+     * This is the default constructor
+     */
+    public Car() {
+
+        speed = 0;
+        transmission = TransmissionType.Automatic;
+        maxSpeed = 150;
+
+    }
+
+    /**
+     * This is the second constructor
+     * @param make Make of the car
+     * @param model Model of the car
+     */
+    public Car (String make, String model) {
+
+        this();
+        this.make = make;
+        this.model = model;
+
+    }
+
+    /**
+     * This is the third constructor
+     * @param make Make of the car
+     * @param model Model of the car
+     * @param year Year of the car
+     * @param price Price of the car
+     */
+    public Car (String make, String model, int year, double price) {
+
+        this(make, model);
+        this.year = year;
+        this.price = price;
+
+    }
+
+    /**
+     Accessor for the max speed of the car
+     * @return the max speed of the car
+     */
+    public int getMaxSpeed() {
+        return maxSpeed;
+    }
+
+    /**
+     * Sets the maximum speed for the car
+     * @param maxSpeed the maximum speed of the car
+     */
+    public void setMaxSpeed(int maxSpeed) {
+        this.maxSpeed = maxSpeed;
+    }
+
+    /**
+     * Accessor for the transmission type of the car
+     * @return the transmission type
+     */
+    public TransmissionType getTransmission() {
+        return this.transmission;
+    }
+
+    /**
+     * Sets the transmission type of the car
+     * @param transmission the transmission type of the car
+     */
+    public void setTransmission(TransmissionType transmission) {
+        this.transmission = transmission;
+    }
+
+    /**
+     * Accessor for the price of the car
+     * @return the price of the car
+     */
+    public double getPrice() {
+        return this.price;
+    }
+
+    /**
+     * Sets the price of the car
+     * @param price the price of the car
+     */
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    /**
+     * Accessor for the make of the car
+     * @return the make of the car
+     */
+    public String getMake() {
+        return this.make;
+    }
+
+    /**
+     * Sets the make of the car
+     * @param make the of the car
+     */
+    public void setMake(String make) {
+        this.make = make;
+    }
+
+    /**
+     * Accessor for the model of the car
+     * @return the model of the car
+     */
+    public String getModel() {
+        return model;
+    }
+
+    /**
+     * Sets the model of the car
+     * @param model the model of the car
+     */
+    public void setModel(String model) {
+        this.model = model;
+    }
+
+    /**
+     * Accessor for the year of the car
+     * @return the year of the car
+     */
+    public int getYear() {
+        return year;
+    }
+
+    /**
+     * Sets the year of the car
+     * @param year the year of the car
+     */
+    public void setYear(int year) {
+        this.year = year;
+    }
+
+    /**
+     * Accessor for the speed of the car
+     * @return the speed of the car
+     */
+    public int getSpeed() {
+        return speed;
+    }
+
+    /**
+     * Sets the speed of the car
+     * @param speed the speed of the car
+     */
+    public void setSpeed(int speed) {
+
+        if (speed <= maxSpeed) {
+            this.speed = speed;
+        }
+
+    }
+
+    /**
+     * Accessor for determining if the car is moving
+     * @return True or false based on whether the car is moving
+     */
+    public boolean isMoving() {
+        return this.isMoving;
+    }
+
+    /**
+     * Sets the movement of the car to either true or false
+     * @param moving the movement of the car (True or False)
+     */
+    public void setMoving(boolean moving) {
+        this.isMoving = moving;
+    }
+
+    /**
+     * Accessor for determining if the cat is on
+     * @return True or false based on whether the car is on
+     */
+    public boolean isOn() {
+        return this.isOn;
+    }
+
+    /**
+     * Sets the boolean value for isOn
+     * @param isOn whether the car is on (True or False)
+     */
+    public void setOn(boolean isOn) {
+        this.isOn = isOn;
+    }
+
+    /**
+     * Sets the increase of speed due to acceleration
+     * @param inc the increase of speed due to acceleration
+     */
+    public void accelerate(int inc) {
+        if (inc + speed <= maxSpeed) {
+            this.speed += inc;
+        }
+    }
+
+    /**
+     * Sets the decrease of speed due to deceleration
+     * @param dec the decrease of speed due to deceleration
+     */
+    public void decelerate(int dec) {
+        this.speed -= dec;
+    }
+
+    //Enum of transmission types
+    enum TransmissionType {
+        Manual, Automatic
+    }
+
+    public String toString() {
+        return "Car: {" + "make = " + make + ", model = " + model + "}";
+    }
+
+}bash-3.2$ CA[K[Kcat Dealership.java 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
+/**
+ * The purpose of this class is to create dealerships with some profile information
+ * and store information of all its cars
+ */
+
+public class Dealership {
+
+    //Private string variables
+    private String name;
+    private String location;
+
+    //Private array lists
+    private ArrayList<String> employees = new ArrayList<>();
+    private ArrayList<String> managers = new ArrayList<>();
+    private ArrayList<Car> cars = new ArrayList<>();
+
+    /**
+     * This is the default constructor
+     */
+    public Dealership() {
+
+    }
+
+    /**
+     * This is the second constructor
+     * @param name the name of the dealership
+     * @param location the location of the dealership
+     */
+    public Dealership(String name, String location) {
+        this.name = name;
+        this.location = location;
+    }
+
+    /**
+     * Accessor for the name of the dealership
+     * @return dealership name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * Sets the name of the dealership
+     * @param name dealership name
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * Accessor for the location of the dealership
+     * @return the dealership location
+     */
+    public String getLocation() {
+        return location;
+    }
+
+    /**
+     * Sets the location of the dealership
+     * @param location dealership location
+     */
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    /**
+     * Accessor for list of employees
+     * @return list of employees
+     */
+    public ArrayList<String> getEmployees() {
+        return employees;
+    }
+
+    /**
+     * Sets the list of employees of the dealership
+     * @param employees a list of employees
+     */
+    public void setEmployees(ArrayList<String> employees) {
+        this.employees = employees;
+    }
+
+    /**
+     * Adds an employee to the list
+     * @param employee name of employee
+     */
+    public void addEmployee(String employee) {
+        this.employees.add(employee);
+    }
+
+    /**
+     * Accessor for the list of managers
+     * @return list of managers
+     */
+    public ArrayList<String> getManagers() {
+        return managers;
+    }
+
+    /**
+     * Sets the list of managers of the dealership
+     * @param managers list of managers
+     */
+    public void setManagers(ArrayList<String> managers) {
+        this.managers = managers;
+    }
+
+    /**
+     * Adds a manager to the list
+     * @param manager name of the manager
+     */
+    public void addManager(String manager) {
+        this.managers.add(manager);
+    }
+
+    /**
+     * Accessor for the list of the cars
+     * @return list of cars
+     */
+    public ArrayList<Car> getCars() {
+        return cars;
+    }
+
+    /**
+     * Sets the list of cars of the dealership
+     * @param cars list of cars
+     */
+    public void setCars(ArrayList<Car> cars) {
+        this.cars = cars;
+    }
+
+    /**
+     * Adds a car to the list
+     * @param addition car to be added
+     */
+    public void addCar(Car addition) {
+        this.cars.add(addition);
+    }
+
+}bash-3.2$ cat DealershipTw[Kester.java 
+public class DealershipTester {
+
+    public static void main (String[] args) {
+
+        Car car1 = new Car("Ford", "EcoSport");
+        Car car2 = new Car("Honda", "Civic", 2016, 37000);
+        Car car3 = new Car("Toyota", "Camry");
+
+        Dealership dealership1 = new Dealership("Rose City Sales", "Windsor");
+        Dealership dealership2 = new Dealership("Pinnacle Purchases", "Toronto");
+
+        dealership1.setLocation("Harrow");
+        System.out.printf("Actual location of dealership1: %s\n", dealership1.getLocation());
+        System.out.println("Expected location of dealership1: Harrow\n");
+
+        System.out.printf("Actual name of dealership2: %s\n", dealership2.getName());
+        System.out.println("Expected name of dealership2: Pinnacle Purchases\n");
+
+        //Adding managers and employees to dealership1
+        dealership1.addEmployee("Bill");
+        dealership1.addEmployee("Hudson");
+        dealership1.addEmployee("Dana");
+        dealership1.addManager("Atlas");
+
+        //Adding managers and employees to dealership2
+        dealership2.addManager("Cindy");
+        dealership2.addManager("Tony");
+        dealership2.addEmployee("Steven");
+        dealership2.addManager("Ross");
+
+        System.out.println("Actual employees of dealership1: " + dealership1.getEmployees());
+        System.out.println("Expected employees of dealership1: [Bill, Hudson, Dana]\n");
+        System.out.println("Actual managers of dealership1: " + dealership1.getManagers());
+        System.out.println("Expected managers of dealership1: [Atlas]\n");
+
+        System.out.println("Actual employees of dealership2: " + dealership2.getEmployees());
+        System.out.println("Expected employees of dealership2: [Steven]\n");
+        System.out.println("Actual managers of dealership2: " + dealership2.getManagers());
+        System.out.println("Expected managers of dealership2: [Cindy, Tony, Ross]\n");
+
+        //Adding two cars to dealership1
+        dealership1.addCar(car3);
+        dealership1.addCar(car1);
+
+        //Adding three cars to dealership2
+        dealership2.addCar(car3);
+        dealership2.addCar(car2);
+        dealership2.addCar(car1);
+
+        System.out.println("Actual list of cars for dealership1: " + dealership1.getCars());
+        System.out.println("Expected list of cars for dealership1: [Car: {make = Toyota, model = Camry}, Car: {make = Ford, model = EcoSport}]\n");
+        System.out.println("Actual list of cars for dealership2: " + dealership2.getCars());
+        System.out.println("Expected list of cars for dealership2: [Car: {make = Toyota, model = Camry}, Car: {make = Honda, model = Civic}, Car: {make = Ford, model = EcoSport}]");
+
+    }
+
+}bash-3.2$ ca[K[Kjavac DealershipTq[Kester.java 
+bash-3.2$ java DealershipTester.[K
+Actual location of dealership1: Harrow
+Expected location of dealership1: Harrow
+
+Actual name of dealership2: Pinnacle Purchases
+Expected name of dealership2: Pinnacle Purchases
+
+Actual employees of dealership1: [Bill, Hudson, Dana]
+Expected employees of dealership1: [Bill, Hudson, Dana]
+
+Actual managers of dealership1: [Atlas]
+Expected managers of dealership1: [Atlas]
+
+Actual employees of dealership2: [Steven]
+Expected employees of dealership2: [Steven]
+
+Actual managers of dealership2: [Cindy, Tony, Ross]
+Expected managers of dealership2: [Cindy, Tony, Ross]
+
+Actual list of cars for dealership1: [Car: {make = Toyota, model = Camry}, Car: {make = Ford, model = EcoSport}]
+Expected list of cars for dealership1: [Car: {make = Toyota, model = Camry}, Car: {make = Ford, model = EcoSport}]
+
+Actual list of cars for dealership2: [Car: {make = Toyota, model = Camry}, Car: {make = Honda, model = Civic}, Car: {make = Ford, model = EcoSport}]
+Expected list of cars for dealership2: [Car: {make = Toyota, model = Camry}, Car: {make = Honda, model = Civic}, Car: {make = Ford, model = EcoSport}]
+bash-3.2$ exit
+exit
+
+Script done on Tue Oct 13 19:08:01 2020
